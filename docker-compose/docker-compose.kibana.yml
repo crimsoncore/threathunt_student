@@ -1,0 +1,21 @@
+version: '3'
+services:
+  kibana:
+    image: 'docker.elastic.co/kibana/kibana:7.6.2'
+    container_name: kibana
+    restart: unless-stopped
+    labels:
+      - "traefik.http.routers.kibana.rule=HostRegexp(`{subdomain:kibana.*}.{subdomain:.*}`)"
+      - "traefik.enable=true"
+      - "traefik.http.routers.kibana.entrypoints=web"
+      - "traefik.http.routers.kibana.middlewares=th-auth"
+    volumes:
+      - /opt/threathunt/kibana/config/:/usr/share/kibana/config/
+    ports:
+      - '5601:5601'
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge

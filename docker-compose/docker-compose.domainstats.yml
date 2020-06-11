@@ -1,0 +1,16 @@
+version: '3'
+services:  
+  domainstats:
+    image: securityonionsolutions/so-domainstats:latest
+    container_name: domainstats
+    restart: unless-stopped
+    ports:
+      - 20000:20000
+    volumes:
+      - /opt/threathunt/domain_stats/top-1m.csv:/opt/domain_stats/top-1m.csv
+    networks:
+      - elastic
+networks:
+  elastic:
+    driver: bridge
+    

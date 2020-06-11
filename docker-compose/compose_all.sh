@@ -1,0 +1,1 @@
+docker-compose -f  docker-compose.elastic.yml -f docker-compose.logstash.yml -f docker-compose.kibana.yml -f docker-compose.portainer.yml -f docker-compose.domainstats.yml -f docker-compose.freqserver.yml -f docker-compose.cerebro.yml -f docker-compose.traefik.yml -f docker-compose.mdbook.yml -f docker-compose.elastalert.yml up -d

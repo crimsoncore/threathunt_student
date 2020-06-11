@@ -1,0 +1,8 @@
+version: '3'
+services:
+
+    networks:
+      - elastic
+networks:
+  elastic:
+    driver: bridge
