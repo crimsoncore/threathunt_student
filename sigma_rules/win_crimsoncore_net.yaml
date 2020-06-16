@@ -1,5 +1,5 @@
 title: Net commands
-id:
+id: Test
 status: experimental
 description: Detects recon using net.exe commands
 references:
