@@ -14,11 +14,11 @@ logsource:
 detection:
     selection:
         EventID: 10
-        TargetImage: 'C:\windows\system32\lsass.exe'
+        TargetImage: 'C:\Windows\system32\lsass.exe'
         GrantedAccess: '0x1fffff'
         CallTrace:
-         - '*dbghelp.dll*'
-         - '*dbgcore.dll*'
+         - '*dbghelp.DLL*'
+         - '*dbgcore.DLL*'
     condition: selection
 falsepositives:
     - unknown

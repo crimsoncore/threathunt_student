@@ -14,7 +14,7 @@ logsource:
 detection:
     selection:
         EventID: 10
-        TargetImage: 'C:\windows\system32\lsass.exe'
+        TargetImage: 'C:\Windows\system32\lsass.exe'
         GrantedAccess:
             - '0x1410'
             - '0x1010'
