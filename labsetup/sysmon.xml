@@ -73,8 +73,8 @@
 
 <!-- SYSMON EVENT ID 7 == DLL (IMAGE) LOADED BY PROCESS [ImageLoad] -->
 
-  <ImageLoad onmatch="include">
-		<!--NOTE: Using "include" with no rules means nothing in this section will be logged-->
+  <ImageLoad onmatch="exclude">
+		<!--NOTE: Using "exclude" with no rules means everything in this section will be logged-->
   </ImageLoad>
 
 <!-- SYSMON EVENT ID 8 == REMOTE THREAD CREATED [CreateRemoteThread] -->
