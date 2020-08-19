@@ -6,7 +6,7 @@ filter:
     query_string:
       query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND winlog.event_id:"1"
         AND winlog.event_data.OriginalFileName:(*net.exe *net1.exe))
-index: logstash-*
+index: winlogbeat-*
 name: Net-commands_0
 priority: 2
 realert:
