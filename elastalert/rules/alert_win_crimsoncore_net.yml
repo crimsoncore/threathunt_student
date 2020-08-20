@@ -1,13 +1,14 @@
 alert:
 - debug
-description: Detects code-execution using REGSVR32.exe connecting to web server
+description: Detects recon using net.exe commands
 filter:
 - query:
     query_string:
-      query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND winlog.event_id:"1" AND process.executable:("regsvr32.exe") AND process.args:("scrobj.dll" OR "i\:http\:"))
+      query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND winlog.event_id:"1"
+        AND winlog.event_data.OriginalFileName:(*net.exe *net1.exe))
 index: winlogbeat-*
-name: Mitre-T1218.010---Signed-Binary-Proxy-Execution---Regsvr32_0
-priority: 1
+name: Net-commands_0
+priority: 2
 realert:
   minutes: 0
 type: any
@@ -23,4 +24,3 @@ alert:
 - "slack"
 slack:
 slack_webhook_url: "https://hooks.slack.com/services/KEYWILLBEPROVIDED"
-
