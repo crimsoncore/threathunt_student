@@ -1,0 +1,25 @@
+alert:
+- debug
+description: T1543.003 Technique (Create or Modify System Process - Windows Service)
+filter:
+- query:
+    query_string:
+      query: winlog.event_id:"7045"
+index: winlogbeat-*
+name: Supicious Service Installation
+priority: 1
+realert:
+  minutes: 0
+type: any
+
+alert_text: "Time: {2} ### Endpoint: {0} ### CommandLine: {1} ###"
+alert_text_type: alert_text_only
+alert_text_args:
+- host.name
+- winlog.event_data.ServiceName
+- "@timestamp"
+
+alert:
+- "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/T1R1AFK8C/KEYWILLBEPROVIDED"

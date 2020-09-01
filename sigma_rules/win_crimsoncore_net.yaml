@@ -15,7 +15,7 @@ logsource:
 detection:
     selection:
         EventID: 1
-        OriginalFileName:
+        ProcessName:
             - '*net.exe'
             - '*net1.exe'
     condition: selection
