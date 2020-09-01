@@ -1,0 +1,19 @@
+title: Mitre T1543.003 Technique (Create or Modify System Process - Windows Service)
+status: experimental
+description: Detects service installation on a machine
+references:
+    - Internal Research
+author: Luk Schoonaert (CrimsonCORE)
+tags:
+    - attack.peristence
+    - attack.t1543.003
+logsource:
+    product: windows
+    service: system
+detection:
+    selection:
+        EventID: 7045
+    condition: selection
+falsepositives:
+    - High
+level: high
