@@ -1,0 +1,25 @@
+alert:
+- debug
+description: Detect priv users or groups recon based on 4661 eventid and known privileged users or groups SIDs
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND winlog.event_id:"4661" AND winlog.event_data.ObjectType:("SAM_USER" OR "SAM_GROUP") AND winlog.event_data.ObjectName.keyword:(*\-512 OR *\-502 OR *\-500 OR *\-505 OR *\-519 OR *\-520 OR *\-544 OR *\-551 OR *\-555 OR *admin*))
+index: winlogbeat-*
+name: Mitre T1018 - AD Privileged Users or Groups Reconnaissance
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+alert_text: "Time: {2} ### Endpoint: {0} ### CommandLine: {1} ###"
+alert_text_type: alert_text_only
+alert_text_args:
+- host.name
+- process.command_line
+- "@timestamp"
+
+alert:
+- "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/T1R1AFK8C/KEYWILLBEPROVIDED"
