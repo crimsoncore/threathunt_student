@@ -1,0 +1,19 @@
+title: Mitre T1136.002 Technique (Create Account - Domain Account)
+status: experimental
+description: Detects account creation on AD Domain
+references:
+    - Internal Research
+author: Luk Schoonaert (CrimsonCORE)
+tags:
+    - attack.peristence
+    - attack.t1136.002
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 7420
+    condition: selection
+falsepositives:
+    - High
+level: high

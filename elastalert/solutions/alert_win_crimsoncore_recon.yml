@@ -12,11 +12,12 @@ realert:
   minutes: 0
 type: any
 
-alert_text: "Time: {2} ### Endpoint: {0} ### CommandLine: {1} ###"
+alert_text: "Time: {3} ### Target System: {0} ### Account used: {1} ### Target SID: {2}"
 alert_text_type: alert_text_only
 alert_text_args:
 - host.name
-- process.command_line
+- winlog.event_data.SubjectUserName
+- winlog.event_data.ObjectName
 - "@timestamp"
 
 alert:
