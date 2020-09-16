@@ -7,20 +7,21 @@ filter:
       query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND winlog.event_id:"1"
         AND winlog.event_data.OriginalFileName:(*net.exe *net1.exe))
 index: winlogbeat-*
-name: Net-commands_0
+name: Mitre 1018/1078 - net commands
 priority: 2
 realert:
   minutes: 0
 type: any
 
-alert_text: "Time: {2} ### Endpoint: {0} ### CommandLine: {1} ###"
+alert_text: "HOSTNAME: {0} ### USER: {1} ### CMD LINE: {2} ### Time: {3}"
 alert_text_type: alert_text_only
 alert_text_args:
 - host.name
-- process.command_line
+- user.name
+- process.args                 
 - "@timestamp"
 
 alert:
 - "slack"
 slack:
-slack_webhook_url: "https://hooks.slack.com/services/T1R1AFK8C/B010A35KD19/KEYWILLBEPROVIDED"
+slack_webhook_url: "https://hooks.slack.com/services/KEYWILLBEPROVIDED"
