@@ -1,0 +1,29 @@
+alert:
+- debug
+description: Detects account creation on AD Domain
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND winlog.event_id:"4720")
+index: winlogbeat-*
+name: Mitre-T1136.002-Domain-Account-Creation
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+alert_text: "CREATOR: {1} --- HOSTNAME: {0} --- ACCOUNT CREATED: {2} --- Time: {3}"
+alert_text_type: alert_text_only
+alert_text_args:
+- host.name
+- user.name
+- winlog.event_data.SamAccountName
+- "@timestamp"
+#- kibana_link
+
+#<a href='{3}'>Kibana link</a>
+
+alert:
+- "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/KEYWILLBEPROVIDED"
