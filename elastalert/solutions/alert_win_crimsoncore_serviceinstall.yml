@@ -6,7 +6,7 @@ filter:
     query_string:
       query: winlog.event_id:"7045"
 index: winlogbeat-*
-name: Supicious Service Installation
+name: Mitre T1543 - Create or Modify System Process - Windows Service
 priority: 1
 realert:
   minutes: 0
