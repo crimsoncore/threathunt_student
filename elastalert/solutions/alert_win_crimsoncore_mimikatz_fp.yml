@@ -1,0 +1,29 @@
+alert:
+- debug
+description: Detects process access to LSASS which is typical for Mimikatz (0x1000 PROCESS_QUERY_ LIMITED_INFORMATION, 0x0400 PROCESS_QUERY_ INFORMATION "only $ versions", 0x0010 PROCESS_VM_READ)
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND (winlog.event_id:"10" AND winlog.event_data.TargetImage:"C\:\\Windows\\system32\\lsass.exe" AND winlog.event_data.GrantedAccess:("0x1410" OR "0x1010")) AND (NOT (process.executable.keyword:(*GoogleUpdate.exe))))
+index: winlogbeat-*
+name: Mitre T1003 - Credential Dumping - LSASS Memory (mimikatz)
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+alert_text: "HOSTNAME: {0} ### USER: {1} ### SOURCE PROCESS: {2} ### Time: {3}"
+alert_text_type: alert_text_only
+alert_text_args:
+- host.name
+- winlog.user.name
+- process.name                    
+- "@timestamp"
+#- kibana_link
+
+#<a href='{3}'>Kibana link</a>
+
+alert:
+- "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/KEYWILLBEPROVIDED"
