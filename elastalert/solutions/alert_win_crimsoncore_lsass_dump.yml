@@ -1,0 +1,29 @@
+alert:
+- debug
+description: Detects process LSASS memory dump using procdump or taskmgr based on the CallTrace pointing to dbghelp.dll or dbgcore.dll for win10
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND winlog.event_id:"10" AND winlog.event_data.TargetImage:"C\:\\windows\\system32\\lsass.exe" AND winlog.event_data.GrantedAccess:"0x1fffff" AND winlog.event_data.CallTrace:(*dbghelp.DLL* OR *dbgcore.DLL*))
+index: winlogbeat-*
+name: Mitre T1003.001 - Credential Dumping - LSASS Memory (ProcDump without Mimikatz)
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+alert_text: "HOSTNAME: {0} ### USER: {1} ### SOURCE PROCESS: {2} ### Time: {3}"
+alert_text_type: alert_text_only
+alert_text_args:
+- host.name
+- winlog.user.name
+- process.name                    
+- "@timestamp"
+#- kibana_link
+
+#<a href='{3}'>Kibana link</a>
+
+alert:
+- "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/KEYWILLBEPROVIDED"
