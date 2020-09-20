@@ -1,23 +1,24 @@
 alert:
 - debug
-description: Detects account creation on AD Domain
+description: Detects account creation on AD Domain or Local Machine
 filter:
 - query:
     query_string:
       query: (winlog.channel:"Security" AND winlog.event_id:"4720")
 index: winlogbeat-*
-name: Mitre T1136.002 - Domain Account Creation
+name: Mitre T1136.002 - Local or Domain Account Creation
 priority: 2
 realert:
   minutes: 0
 type: any
 
-alert_text: "CREATOR: {1} ### HOSTNAME: {0} ### ACCOUNT CREATED: {2} ### Time: {3}"
+alert_text: "CREATOR: {1} ### HOSTNAME: {0} ### ACCOUNT CREATED: {2} ### DOMAIN: {3} ### Time: {4}"
 alert_text_type: alert_text_only
 alert_text_args:
 - host.name
 - user.name
 - winlog.event_data.SamAccountName
+- user.domain
 - "@timestamp"
 #- kibana_link
 

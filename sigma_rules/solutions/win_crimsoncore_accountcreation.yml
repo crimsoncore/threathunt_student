@@ -1,4 +1,4 @@
-title: Mitre T1136.002 Technique (Create Account - Domain Account)
+title: Mitre T1136.002 Technique (Create Account - Domain or Local Account)
 status: experimental
 description: Detects account creation on AD Domain
 references:
