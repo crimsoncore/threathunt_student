@@ -1,0 +1,29 @@
+alert:
+- debug
+description: Detects the attack technique KERBEROAST which is used to move laterally inside the network
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND (winlog.event_id:"4769" AND winlog.event_data.Status:"0x0" AND winlog.event_data.TicketEncryptionType:"0x17" AND winlog.event_data.TicketOptions.keyword:*08100*) AND (NOT (winlog.event_data.ServiceName.keyword:*$@*)))
+index: winlogbeat-*
+name: Mitre T1558.003 - Kerberoasting
+priority: 3
+realert:
+  minutes: 0
+type: any
+
+alert_text: "HOSTNAME: {0} ### USER: {1} ### SPN REQUESTED: {2} ### Time: {3}"
+alert_text_type: alert_text_only
+alert_text_args:
+- winlog.computer_name
+- user.name
+- winlog.event_data.ServiceName
+- "@timestamp"
+#- kibana_link
+
+#<a href='{3}'>Kibana link</a>
+
+alert:
+- "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/KEYWILLBEPROVIDED"
