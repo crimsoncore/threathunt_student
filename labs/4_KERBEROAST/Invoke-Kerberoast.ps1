@@ -1,13 +1,10 @@
 <#
-
 Kerberoast.ps1
 Author: Will Schroeder (@harmj0y)
 License: BSD 3-Clause
 Required Dependencies: None
-
 Note: the primary method of use will be Invoke-Kerberoast with
 various targeting options.
-
 #>
 
 function Get-DomainSearcher {
@@ -454,81 +451,47 @@ http://social.technet.microsoft.com/Forums/scriptcenter/en-US/0c5b3f83-e528-4d49
 function Get-DomainSPNTicket {
 <#
 .SYNOPSIS
-
 Request the kerberos ticket for a specified service principal name (SPN).
-
 Author: machosec, Will Schroeder (@harmj0y)  
 License: BSD 3-Clause  
 Required Dependencies: Invoke-UserImpersonation, Invoke-RevertToSelf  
-
 .DESCRIPTION
-
 This function will either take one/more SPN strings, or one/more PowerView.User objects
 (the output from Get-DomainUser) and will request a kerberos ticket for the given SPN
 using System.IdentityModel.Tokens.KerberosRequestorSecurityToken. The encrypted
 portion of the ticket is then extracted and output in either crackable John or Hashcat
 format (deafult of John).
-
 .PARAMETER SPN
-
 Specifies the service principal name to request the ticket for.
-
 .PARAMETER User
-
 Specifies a PowerView.User object (result of Get-DomainUser) to request the ticket for.
-
 .PARAMETER OutputFormat
-
 Either 'John' for John the Ripper style hash formatting, or 'Hashcat' for Hashcat format.
 Defaults to 'John'.
-
 .PARAMETER Credential
-
 A [Management.Automation.PSCredential] object of alternate credentials
 for connection to the remote domain using Invoke-UserImpersonation.
-
 .PARAMETER Delay
-
 Specifies the delay in seconds between ticket requests.
-
 .PARAMETER Jitter
-
 Specifies the jitter (0-1.0) to apply to any specified -Delay, defaults to +/- 0.3
-
 .EXAMPLE
-
 Get-DomainSPNTicket -SPN "HTTP/web.testlab.local"
-
 Request a kerberos service ticket for the specified SPN.
-
 .EXAMPLE
-
 "HTTP/web1.testlab.local","HTTP/web2.testlab.local" | Get-DomainSPNTicket
-
 Request kerberos service tickets for all SPNs passed on the pipeline.
-
 .EXAMPLE
-
 Get-DomainUser -SPN | Get-DomainSPNTicket -OutputFormat Hashcat
-
 Request kerberos service tickets for all users with non-null SPNs and output in Hashcat format.
-
 .INPUTS
-
 String
-
 Accepts one or more SPN strings on the pipeline with the RawSPN parameter set.
-
 .INPUTS
-
 PowerView.User
-
 Accepts one or more PowerView.User objects on the pipeline with the User parameter set.
-
 .OUTPUTS
-
 PowerView.SPNTicket
-
 Outputs a custom object containing the SamAccountName, ServicePrincipalName, and encrypted ticket section.
 #>
 
@@ -638,7 +601,7 @@ Outputs a custom object containing the SamAccountName, ServicePrincipalName, and
 
                 if($Hash) {
                     if ($OutputFormat -match 'John') {
-                        $HashFormat = "`$krb5tgs`$$($Ticket.ServicePrincipalName):$Hash"
+                        $HashFormat = "$($SamAccountName):`$krb5tgs`$$($Etype)`$$Hash"
                     }
                     else {
                         if ($DistinguishedName -ne 'UNKNOWN') {
