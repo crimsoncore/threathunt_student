@@ -638,7 +638,7 @@ Outputs a custom object containing the SamAccountName, ServicePrincipalName, and
 
                 if($Hash) {
                     if ($OutputFormat -match 'John') {
-                        $HashFormat = "$($SamAccountName):`$krb5tgs`$$($Etype)`$$Hash"
+                        $HashFormat = "`$krb5tgs`$$($Ticket.ServicePrincipalName):$Hash"
                     }
                     else {
                         if ($DistinguishedName -ne 'UNKNOWN') {
