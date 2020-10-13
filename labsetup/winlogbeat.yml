@@ -94,7 +94,7 @@ setup.dashboards.enabled: true
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
 setup.kibana:
-  host: "http://10.0.0.5:5601"
+  host: "http://kali:5601"
   # Kibana Host
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
@@ -141,7 +141,7 @@ setup.kibana:
 #----------------------------- Logstash output --------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["10.0.0.6:5044"]
+  hosts: ["kali:5044"]
   #index: 'logstash-winlogbeat'
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
