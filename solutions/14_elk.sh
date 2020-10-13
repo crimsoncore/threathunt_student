@@ -20,3 +20,11 @@ sed -i "s/PROVIDED_PASSWORD/Password1234!/g" /opt/threathunt/logstash/pipeline/1
 # Install logstash docker
 cd /opt/threathunt/docker-compose
 sudo docker-compose -f docker-compose.logstash.yml up -d
+
+# Install Kibana
+cd /opt/threathunt/docker-compose
+echo "### KIBANA DOCKER COMPOSE CONFIG ###"
+cat docker-compose.kibana.yml
+echo "###"
+sudo docker-compose -f docker-compose.kibana.yml up -d
+
