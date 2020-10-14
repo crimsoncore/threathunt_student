@@ -1,0 +1,30 @@
+title: Suspicious PsExec Execution
+description: detects execution of psexec
+author: Samir Bousseaden & Luk Schoonaert
+date: 2020/10/14
+references:
+    - https://blog.menasec.net/2019/02/threat-hunting-3-detecting-psexec.html
+tags:
+    - attack.lateral_movement
+    - attack.t1021.002
+logsource:
+    product: windows
+    service: security
+    definition: 'The advanced audit policy setting "Object Access > Audit Detailed File Share" must be configured for Success/Failure'
+detection:
+    selection1:
+        EventID: 5145
+        ShareName: '*\IPC$'
+        RelativeTargetName:
+            - '*stdin'
+            - '*stdout'
+            - '*stderr'
+    selection2:
+        EventID: 5145
+        ShareName: '*\IPC$'
+        RelativeTargetName: 'PSEXESVC*'
+    condition: selection1 and selection2
+falsepositives:
+    - nothing observed so far
+level: high
+
