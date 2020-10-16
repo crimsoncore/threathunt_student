@@ -1,0 +1,22 @@
+title: PsExec Named Pipe
+author: Luk Schoonaert
+date: 2020/10/14
+references:
+    - https://
+tags:
+    - attack.lateral_movement
+    - attack.t1021.002
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection1:
+        EventID: 17
+        PipeName: '\PSEXESVC*'
+    selection2:
+        EventID: 18
+        PipeName: '\PSEXESVC*'
+    condition: selection1 or selection2
+falsepositives:
+    - nothing observed so far
+level: high

@@ -1,0 +1,30 @@
+alert:
+- debug
+description: Detects PSExec execution - requires share access logging to be enable by GPO
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Security" AND winlog.event_id:"5145" AND winlog.event_data.ShareName.keyword:*\\IPC$ AND winlog.event_data.RelativeTargetName.keyword:(*stdin OR *stdout OR *stderr) AND winlog.event_data.RelativeTargetName.keyword:PSEXESVC*)
+index: winlogbeat-*
+name: Mitre 1021.002 - Suspicious PsExec Execution
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+alert_text: "SOURCE IP: {2} ### TARGET HOSTNAME: {0} ### USER: {1} ### NAME: {4} ### Time: {3}"
+alert_text_type: alert_text_only
+alert_text_args:
+- host.name
+- winlog.event_data.SubjectUserName
+- winlog.event_data.IpAddress
+- "@timestamp"
+- winlog.event_data.RelativeTargetName
+#- kibana_link
+
+#<a href='{3}'>Kibana link</a>
+
+alert:
+- "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/KEYWILLBEPROVIDED"

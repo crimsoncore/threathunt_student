@@ -1,0 +1,31 @@
+alert:
+- debug
+description: 'Named Pipe'
+filter:
+- query:
+    query_string:
+      query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND file.name.keyword:\\PSEXESVC* AND (winlog.event_id:"17" OR winlog.event_id:"18"))
+index: winlogbeat-*
+name: Mitre T1021.002 - PsExec Named Pipe
+priority: 2
+realert:
+  minutes: 0
+type: any
+
+alert_text: "HOSTNAME: {0} ### USER NAME: {1} ### PROCESS NAME : {2} ### PIPE NAME: {3} ### ACTION: {4} ### Time: {5}"
+alert_text_type: alert_text_only
+alert_text_args:
+- host.name
+- winlog.user.name
+- process.name
+- file.name
+- winlog.event_data.EventType
+- "@timestamp"
+#- kibana_link
+
+#<a href='{3}'>Kibana link</a>
+
+alert:
+- "slack"
+slack:
+slack_webhook_url: "https://hooks.slack.com/services/KEYWILLBEPROVIDED"
