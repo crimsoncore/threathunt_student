@@ -1,5 +1,4 @@
 title: Microsoft Office Product Spawning Windows Shell
-id: 438025f9-5856-4663-83f7-52f878a70a50
 status: experimental
 description: Detects a Windows command line executable started from Microsoft Word, Excel, Powerpoint, Publisher and Visio.
 references:
@@ -20,9 +19,32 @@ logsource:
 detection:
     selection:
         ParentImage:
-            - '*\EXCEL.EXE'
+            - '*EXCEL.EXE'
+            - '*WINWORD.EXE'
+            - '*POWERPNT.exe'
+            - '*MSPUB.exe'
+            - '*VISIO.exe'
+            - '*OUTLOOK.EXE'
         Image:
-            - '*\cmd.exe'
+            - '*cmd.exe'
+            - '*powershell.exe'
+            - '*wscript.exe'
+            - '*cscript.exe'
+            - '*sh.exe'
+            - '*bash.exe'
+            - '*scrcons.exe'
+            - '*schtasks.exe'
+            - '*regsvr32.exe'
+            - '*hh.exe'
+            - '*wmic.exe'  # https://app.any.run/tasks/c903e9c8-0350-440c-8688-3881b556b8e0/
+            - '*mshta.exe'
+            - '*rundll32.exe'
+            - '*msiexec.exe'
+            - '*forfiles.exe'
+            - '*scriptrunner.exe'
+            - '*mftrace.exe'
+            - '*AppVLP.exe'
+            - '*svchost.exe'  # https://www.vmray.com/analyses/2d2fa29185ad/report/overview.html
     condition: selection
 fields:
     - CommandLine
@@ -30,3 +52,4 @@ fields:
 falsepositives:
     - unknown
 level: high
+
