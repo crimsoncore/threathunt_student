@@ -15,6 +15,7 @@ sudo docker-compose -f docker-compose.elastic.yml up -d
 queue=$(hostname | sed  's/AZ-KALI-/RabbitQueue_Student0/g')
 
 sed -i "s/RabbitQueue_StudentXX/$queue/g" /opt/threathunt/logstash/pipeline/100_RabbitMQ_AZURE-input.conf
+sed -i "s/RabbitQueue_Student01/RabbitQueue_Student1/g" /opt/threathunt/logstash/pipeline/100_RabbitMQ_AZURE-input.conf
 sed -i "s/PROVIDED_PASSWORD/Password1234!/g" /opt/threathunt/logstash/pipeline/100_RabbitMQ_AZURE-input.conf
 
 # Install logstash docker
