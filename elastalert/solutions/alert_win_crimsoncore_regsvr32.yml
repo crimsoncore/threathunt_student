@@ -4,7 +4,7 @@ description: Detects code-execution using REGSVR32.exe connecting to web server
 filter:
 - query:
     query_string:
-      query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND winlog.event_id:"1" AND process.executable:("regsvr32.exe") AND process.args:("scrobj.dll" OR "i\:http\:"))
+      query: (winlog.channel:"Microsoft\-Windows\-Sysmon\/Operational" AND winlog.event_id:"1" AND process.executable:("regsvr32.exe") AND process.args.keyword:(scrobj.dll OR *i\:http* OR *i\:https*))
 index: winlogbeat-*
 name: Mitre T1218.010 - Signed Binary Proxy Execution - Regsvr32
 priority: 1
@@ -16,9 +16,10 @@ alert_text: "Time: {2} ### Endpoint: {0} ### CommandLine: {1} ###"
 alert_text_type: alert_text_only
 alert_text_args:
 - host.name
-- process.command_line
+- process.args
 - "@timestamp"
 
+#### The following section for SLACK ALERTING
 alert:
 - "slack"
 slack:

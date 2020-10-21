@@ -17,7 +17,8 @@ detection:
             - 'regsvr32.exe'
         CommandLine:
             - 'scrobj.dll'
-            - 'i:http:'
+            - '*i:http*'
+            - '*i:https*'
     condition: selection
 falsepositives:
     - Unkown
