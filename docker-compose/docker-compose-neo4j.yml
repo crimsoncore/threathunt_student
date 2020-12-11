@@ -1,0 +1,22 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:4.2.1
+    restart: unless-stopped
+    container_name: neo4j
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - /opt/neo4j/data/:/data
+#    environment: 
+#      # Raise memory limits
+#      - NEO4J_dbms_memory_pagecache_size=1G
+#      - NEO4J_dbms.memory.heap.initial_size=1G
+#      - NEO4J_dbms_memory_heap_max__size=1G
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge
