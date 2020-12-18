@@ -8,7 +8,7 @@ AMRunningMode                   : Normal
 AMServiceEnabled                : True
 AMServiceVersion                : 4.18.2010.7
 
-Get-MpPreference | select-object DisableRealtimeMonitoring, SubmitSamplesConsent, MAPSReporting | fl
+Get-MpPreference | select-object DisableRealtimeMonitoring, SubmitSamplesConsent, MAPSReporting, ExclusionPath, ExclusionExtension | fl
 Get-MpComputerStatus | select-object AntivirusEnabled, AntivirusSignatureLastUpdated, RealTimeProtectionEnabled, OnAccessProtectionEnabled | fl
 Update-MpSignature
 get-command -module Defender
