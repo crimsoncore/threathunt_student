@@ -1,7 +1,7 @@
 version: '3'
 services:
   ms:
-    image: metasploitframework/metasploit-framework:latest
+    image: crimsoncorelabs/msf:latest
     container_name : ms
     environment:
       DATABASE_URL: "postgres://postgres@db:5432/msf"
