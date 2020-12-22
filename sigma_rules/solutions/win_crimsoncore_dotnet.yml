@@ -1,0 +1,27 @@
+title: .NET Injection
+status: experimental
+description: Detects .NET clr being loaded into a process (execute-assembly)
+author: Luk Schoonaert
+references:
+    - https://
+tags:
+    - .Net
+    - Process Injection
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 7
+        TargetImage: 'C:\windows\system32\lsass.exe'
+        GrantedAccess: '0x1fffff'
+        CallTrace:
+         - '*dbghelp.dll*'
+         - '*dbgcore.dll*'
+    whitelist:
+         TargetImage: 
+          - 'C:\windows\system32\lsass.exe'    
+    condition: selection AND NOT whitelist
+falsepositives:
+    - unknown
+level: high
