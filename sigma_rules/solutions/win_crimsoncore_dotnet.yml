@@ -13,15 +13,22 @@ logsource:
 detection:
     selection:
         EventID: 7
-        TargetImage: 'C:\windows\system32\lsass.exe'
-        GrantedAccess: '0x1fffff'
-        CallTrace:
-         - '*dbghelp.dll*'
-         - '*dbgcore.dll*'
+        OriginalFileName: 
+          - 'clr.dll'
+          - 'mscoree.dll'        
     whitelist:
-         TargetImage: 
-          - 'C:\windows\system32\lsass.exe'    
+        EventID: 7
+        ProcessName: 
+         - 'LocalBridge.exe'
+         - 'backgroundTaskHost.exe'   
+         - 'mmc.exe'
+         - 'msiexec.exe'
+         - 'mscorsvw.exe' #dotnet Framework
+         - 'ngen.exe' #dotnet Framework
+         - 'taskhostw.exe'
+         - 'ngentask.exe'
     condition: selection AND NOT whitelist
 falsepositives:
     - unknown
 level: high
+
