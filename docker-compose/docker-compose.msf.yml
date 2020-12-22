@@ -1,0 +1,33 @@
+version: '3'
+services:
+  ms:
+    image: metasploitframework/metasploit-framework:latest
+    container_name : ms
+    environment:
+      DATABASE_URL: "postgres://postgres@db:5432/msf"
+      POSTGRES_HOST_AUTH_METHOD: "trust"    
+    links:
+      - db
+    ports:
+      - 4444:4444
+      - 80:80
+      - 8080:8080
+      - 8081:8081
+      - 443:443
+    volumes:
+      - $HOME/.msf4:/home/msf/.msf4
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+
+  db:
+    image: postgres:10-alpine
+    container_name: db
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_DB: "msf" 
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
+    driver: local
