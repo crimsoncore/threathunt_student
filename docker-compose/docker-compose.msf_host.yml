@@ -28,8 +28,12 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     networks:
-      - bridge
+      - elastic
 
 volumes:
   pg_data:
     driver: local
+
+networks:
+  elastic:
+    driver: bridge
