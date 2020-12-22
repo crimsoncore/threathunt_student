@@ -19,6 +19,7 @@ services:
       - /opt/threathunt/metasploit:/usr/src/metasploit-framework/threathunt
     stdin_open: true # docker run -i
     tty: true        # docker run -t
+    network_mode: "host"
 
   db:
     image: postgres:10-alpine
