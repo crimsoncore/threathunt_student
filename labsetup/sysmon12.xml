@@ -102,9 +102,9 @@
 
   <ProcessAccess onmatch="include">
     <TargetImage name="technique_id=T1003,technique_name=Credential Dumping" condition="is">C:\Windows\system32\lsass.exe</TargetImage> <!-- lsass injections -->
-	<TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\system32\notepad.exe</TargetImage> <!-- process injections -->
-	<TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\system32\rundll32.exe</TargetImage> <!-- process injections -->
-	<TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Users\Student01\Desktop\dobeacon.exe</TargetImage> <!-- lsass injections -->
+	  <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\system32\notepad.exe</TargetImage> <!-- process injections -->
+	  <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Windows\system32\rundll32.exe</TargetImage> <!-- process injections -->
+	  <TargetImage name="technique_id=T1055,technique_name=Process Injection" condition="is">C:\Users\Student01\Desktop\dobeacon.exe</TargetImage> <!-- lsass injections -->
   </ProcessAccess>
 
   <ProcessAccess onmatch="exclude">
