@@ -24,3 +24,5 @@ Set-MpPreference -ExclusionExtension exe
 Remove-MpPreference -ExclusionPath C:\Windows\Temp
 
 Get-MpPreference | select-object ExclusionExtension 
+
+Set-MpPreference -DisableRealtimeMonitoring $true
