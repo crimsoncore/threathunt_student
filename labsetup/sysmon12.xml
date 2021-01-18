@@ -210,6 +210,10 @@
  
 <!-- SYSMON EVENT ID 23 : A file delete was detected [FileDelete] -->
   <FileDelete onmatch="exclude"></FileDelete>
- 
+
+<!-- SYSMON EVENT ID 25 : Process image change [ProcessTampering] -->
+  <ProcessTampering onmatch="exclude"></ProcessTampering>
+
+
  </EventFiltering>
 </Sysmon>
