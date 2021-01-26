@@ -21,7 +21,7 @@ winlogbeat.event_logs:
 
   - name: System
     tags: ["winlogbeat","endpoint","windows","system"]
-    event_id: 7045,4697
+    event_id: 7045
     
   - name: Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational
     tags: ["winlogbeat","endpoint","windows","rdp"]
@@ -33,7 +33,7 @@ winlogbeat.event_logs:
     
   - name: Security
     tags: ["winlogbeat","endpoint","windows","security"]
-    event_id: 4624,4625,4648,4661,4662,4663,4672,4720,4722,4728,4732,4732,4769,4776,4688,5140,5145,1102,4798,4799,4656,4657,4698
+    event_id: 4624,4625,4648,4661,4662,4663,4672,4720,4722,4728,4732,4769,4776,4688,5140,5145,1102,4798,4799,4656,4657,4698,4697
     processors:
       - script:
           lang: javascript
