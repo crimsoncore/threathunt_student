@@ -14,7 +14,7 @@ services:
       - 443:443
     volumes:
       - $HOME/.msf4:/home/msf/.msf4
-      - /opt/threathunt/metasploit:/usr/src/metasploit-framework/threathunt
+      - /opt/threathunt:/usr/src/metasploit-framework/threathunt
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     network_mode: "host"
