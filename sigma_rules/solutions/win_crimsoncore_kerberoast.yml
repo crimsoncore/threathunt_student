@@ -19,9 +19,9 @@ detection:
           TicketEncryptionType: "0x17"
           TicketOptions: "*08100*"
     filter:
-        ServiceName : ”krbtgt”
+        ServiceName : "krbtgt"
         ServiceName : "*$"
-        ServiceName : "*$@*"
+        TargetUserName : "*$@*"
     condition: selection and not filter
 falsepositives:
     - Administrator activity
