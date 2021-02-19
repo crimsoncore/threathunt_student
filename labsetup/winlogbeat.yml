@@ -21,7 +21,11 @@ winlogbeat.event_logs:
 
   - name: System
     tags: ["winlogbeat","endpoint","windows","system"]
-    event_id: 7045,5861
+    event_id: 7045
+
+  - name: Microsoft-Windows-WMI-Activity/Operational
+    tags: ["winlogbeat","endpoint","windows","wmi"]
+    event_id: 5861
     
   - name: Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational
     tags: ["winlogbeat","endpoint","windows","rdp"]
