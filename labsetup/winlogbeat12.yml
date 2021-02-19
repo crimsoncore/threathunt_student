@@ -55,7 +55,7 @@ winlogbeat.event_logs:
           
   - name: Microsoft-Windows-PowerShell/Operational
     tags: ["winlogbeat","endpoint","windows","powershell"]
-    event_id: 4103,4104,800
+    event_id: 4104,800
 
 #==================== Elasticsearch template settings ==========================
 
