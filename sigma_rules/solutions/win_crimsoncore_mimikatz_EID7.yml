@@ -1,0 +1,26 @@
+title: Mimikatz Detection LSASS Access
+status: experimental
+description: This search looks for reading loaded Images unique to credential dumping with Mimikatz.
+references:
+    - https://cyberwardog.blogspot.com/2017/03/chronicles-of-threat-hunter-hunting-for_22.html
+tags:
+    - attack.t1003.001
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 7
+        ImageLoaded:
+            - '*WinSCard.dll' 
+            - '*cryptdll.dll'
+            - '*hid.dll' 
+            - '*samlib.dll' 
+            - '*vaultcli.dll'
+    exceptions:
+        SourceImage|endswith: 
+            - GoogleUpdate.exe
+    condition: selection and not exceptions
+falsepositives:
+    - GoogleUpdate.exe
+level: high

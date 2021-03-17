@@ -59,9 +59,9 @@
 
 <!-- SYSMON EVENT ID 5 == Process terminated -->
  
- <ProcessTerminate onmatch="include">
+  <ProcessTerminate onmatch="include">
 			<!--NOTE: Using "include" with no rules means nothing in this section will be logged-->
- </ProcessTerminate>
+  </ProcessTerminate>
 
 <!-- SYSMON EVENT ID 6 == DRIVER LOADED INTO KERNEL [DriverLoad] -->
 
@@ -73,8 +73,14 @@
 
 <!-- SYSMON EVENT ID 7 == DLL (IMAGE) LOADED BY PROCESS [ImageLoad] -->
 
-  <ImageLoad onmatch="exclude">
-		<!--NOTE: Using "exclude" with no rules means everything in this section will be logged-->
+  <ImageLoad onmatch="include">
+    <ImageLoaded condition="end with">mscoree.dll</ImageLoaded> <!--Loaded by Injected .Net Assemblies-->
+    <ImageLoaded condition="end with">clr.dll</ImageLoaded> <!--Loaded by Injected .Net Assemblies-->
+    <ImageLoaded condition="end with">cryptdll.dll</ImageLoaded> <!--Loaded by Mimikatz-->
+    <ImageLoaded condition="end with">hid.dll</ImageLoaded> <!--Loaded by Mimikatz-->
+    <ImageLoaded condition="end with">samlib.dll</ImageLoaded> <!--Loaded by Mimikatz-->
+    <ImageLoaded condition="end with">vaultcli.dll</ImageLoaded> <!--Loaded by Mimikatz-->
+	  <ImageLoaded condition="end with">winscard.dll</ImageLoaded> <!--Loaded by Mimikatz-->
   </ImageLoad>
 
 <!-- SYSMON EVENT ID 8 == REMOTE THREAD CREATED [CreateRemoteThread] -->
@@ -90,7 +96,7 @@
 			<SourceImage condition="is">C:\Windows\system32\audiodg.exe</SourceImage>
 			<StartModule condition="is">C:\Windows\system32\kernel32.dll</StartModule>
 			<TargetImage condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</TargetImage>
-	</CreateRemoteThread>
+  </CreateRemoteThread>
 
 <!-- SYSMON EVENT ID 9 == RAW DISK ACCESS [RawAccessRead] -->
 
