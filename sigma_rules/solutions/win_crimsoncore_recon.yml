@@ -32,7 +32,7 @@ detection:
          - '*admin*'
     filter:
          winlog.event_data.SubjectUserName:
-         - '*$'
+         - '*$*'
     condition: selection and not filter
 falsepositives:
     - if source account name is not an admin then its super suspicious
