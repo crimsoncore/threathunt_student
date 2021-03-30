@@ -13,9 +13,9 @@ logsource:
 detection:
     selection:
         EventID: 1
-        ProcessName: 
-          - 'powershell.exe'      
-    condition: selection 
+        ProcessName:
+            - '*powershell.exe'
+    condition: selection
 falsepositives:
     - unknown
 level: high
