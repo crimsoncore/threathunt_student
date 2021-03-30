@@ -210,7 +210,8 @@
 <!-- SYSMON EVENT ID 22 : DNS Query [DnsQuery] -->
   <DnsQuery onmatch="exclude">
 	  <QueryName condition="end with">.local</QueryName>
-      <Image condition="is">C:\Windows\sysmon64.exe</Image>
+    <QueryName condition="end with">.arpa</QueryName>
+    <Image condition="is">C:\Windows\sysmon64.exe</Image>
 	  <QueryName condition="is">wpad</QueryName>
   </DnsQuery> 
  

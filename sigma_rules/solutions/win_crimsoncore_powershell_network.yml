@@ -1,0 +1,22 @@
+title: Powershell Internet connection
+status: experimental
+description: Detects powershell making an outbound connection to the internet.
+author: Luk Schoonaert
+references:
+    - https://
+tags:
+    - Powershell
+    - Network
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 1
+        ProcessName: 
+          - 'powershell.exe'      
+    condition: selection 
+falsepositives:
+    - unknown
+level: high
+
